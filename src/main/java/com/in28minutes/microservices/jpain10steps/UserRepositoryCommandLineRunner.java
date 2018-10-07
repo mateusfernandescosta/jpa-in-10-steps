@@ -13,15 +13,16 @@ import lombok.extern.log4j.Log4j;
 
 @Component
 @Log4j
-public class UserDaoServiceCommandLineRunner implements CommandLineRunner {
- 	@Autowired
-	private UserDAOService userDaoService;
+public class UserRepositoryCommandLineRunner implements CommandLineRunner {
+
+	@Autowired
+	private UserRepository repository;
 	
 	@Override
 	public void run(String... args) throws Exception {
-		// New User is created : User(id=1, name=Jack, role=Admin)
-		User user = new User("Jack", "Admin");
-		long insert = userDaoService.insert(user);
-		log.info("New User is created : " + user);	
+		// New User is created : User(id=2, name=Jill, role=Admin)
+		User user = new User("Jill", "Admin");
+		repository.save(user);
+		log.info("New User is created : " + user);
 	}
 }
